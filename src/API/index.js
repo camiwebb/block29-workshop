@@ -23,3 +23,20 @@ export async function fetchDetails(playerID) {
     console.error(error);
   }
 }
+
+// Create a new player
+export async function createPlayer(playerData) {
+    try {
+        const response = await fetch(`${ApiURL}/players`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(playerData),
+        });
+        const json = await response.json();
+        return json.data.player;
+    } catch (error) {
+        console.error("Error creating player:", error);
+    }
+}
